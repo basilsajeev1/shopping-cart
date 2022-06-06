@@ -1,0 +1,27 @@
+<div class="container">
+<caption>Cart Items</caption>
+<table class="table">
+  
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each cartItems}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.category}}</td>
+      <td>{{this.price}}</td>
+      <td><img src="images/productImages/{{this._id}}.jpg" style="height: 100px; width: 100px;"></td>
+      <td ><button class="mt-3">-</button>1<button class="mt-3">+</button></td>
+      <td><button class="btn btn-danger mt-3">Remove</button></td>
+    </tr>
+   {{/each}}
+    
+  </tbody>
+</table>
+</div>
