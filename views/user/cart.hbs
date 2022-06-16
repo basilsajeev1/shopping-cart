@@ -8,20 +8,29 @@
       <th scope="col">Category</th>
       <th scope="col">Price</th>
       <th scope="col">Image</th>
+      <th scope="col">Quantity</th>
     </tr>
   </thead>
   <tbody>
       {{#each cartItems}}
     <tr>
+      {{#each this.product}}
       <td>{{this.name}}</td>
       <td>{{this.category}}</td>
-      <td>{{this.price}}</td>
+      <td>Rs.{{this.price}}</td>
       <td><img src="images/productImages/{{this._id}}.jpg" style="height: 100px; width: 100px;"></td>
-      <td ><button class="mt-3">-</button>1<button class="mt-3">+</button></td>
-      <td><button class="btn btn-danger mt-3">Remove</button></td>
+      {{/each}}
+      
+      <td ><button id="{{this.item}}1" class=" btn shadow-none" onclick="changeQuantity('{{this._id}}','{{this.item}}',-1)" >-</button>
+      
+      <span id="{{this.item}}" >{{this.quantity}}</span>
+      
+      <button class=" btn shadow-none" onclick="changeQuantity('{{this._id}}','{{this.item}}',1)">+</button></td>
+      <td><button class="btn btn-danger" onclick="deleteProduct('{{this._id}}','{{this.item}}')">Remove</button></td>
     </tr>
    {{/each}}
     
   </tbody>
 </table>
 </div>
+

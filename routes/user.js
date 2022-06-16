@@ -1,4 +1,6 @@
 var express = require('express');
+const async = require('hbs/lib/async');
+const { resolve } = require('promise');
 const { response } = require('../app');
 var db=require('../config/connection')
 var router = express.Router();
@@ -70,7 +72,7 @@ router.get('/add-to-cart/:id',(req,res)=>{
   
     if(req.session.loggedIn){
       userHelpers.addToCart(req.params.id,req.session.user._id).then((response)=>{
-        res.redirect('/')
+        res.json({status:true})
       })
 
     }else{
@@ -86,7 +88,23 @@ router.get('/cart',async(req,res)=>{
   cartItems= await userHelpers.getCartItems(req.session.user._id)
   
   res.render('user/cart',{user,cartItems})
+  console.log(cartItems)
+  //console.log(cartItems[0].product)
   
+})
+
+router.post('/change-product-quantity',async(req,res)=>{
+  
+  await userHelpers.changeProductQuantity(req.body).then((response)=>{
+    res.json({status:true})
+    //resolve(response)
+  })
+})
+
+router.post('/delete-product',async(req,res)=>{
+  await userHelpers.deleteProduct(req.body).then((response)=>{
+      res.json({status:true})
+  })
   
 })
 
