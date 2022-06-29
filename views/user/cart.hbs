@@ -6,8 +6,9 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Category</th>
-      <th scope="col">Price</th>
       <th scope="col">Image</th>
+      <th scope="col">Price</th>
+      
       <th scope="col">Quantity</th>
     </tr>
   </thead>
@@ -17,20 +18,27 @@
       {{#each this.product}}
       <td>{{this.name}}</td>
       <td>{{this.category}}</td>
-      <td>Rs.{{this.price}}</td>
       <td><img src="images/productImages/{{this._id}}.jpg" style="height: 100px; width: 100px;"></td>
+      <td>Rs.{{this.price}}</td>
+      
       {{/each}}
       
-      <td ><button id="{{this.item}}1" class=" btn shadow-none" onclick="changeQuantity('{{this._id}}','{{this.item}}',-1)" >-</button>
+      <td ><button id="{{this.item}}1" class=" btn shadow-none" onclick="changeQuantity('{{this._id}}','{{this.item}}','{{../user._id}}',-1)" >-</button>
       
       <span id="{{this.item}}" >{{this.quantity}}</span>
       
-      <button class=" btn shadow-none" onclick="changeQuantity('{{this._id}}','{{this.item}}',1)">+</button></td>
+      <button class=" btn shadow-none" onclick="changeQuantity('{{this._id}}','{{this.item}}','{{../user._id}}',1)">+</button></td>
       <td><button class="btn btn-danger" onclick="deleteProduct('{{this._id}}','{{this.item}}')">Remove</button></td>
     </tr>
    {{/each}}
     
   </tbody>
 </table>
+<div class="float-end ps-5">
+<h5 class=" mt-3 me-5">Total Rs.<span id="totalAmountCart">{{totalAmount}}</span></h5>
+{{#if (ne totalAmount 0)}}
+<a href="/order-page" class="btn btn-success mt-5 ">Buy Now</a>
+{{/if}}
+</div>
 </div>
 

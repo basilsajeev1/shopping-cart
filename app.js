@@ -15,7 +15,26 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.engine('hbs', hbs.engine({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layouts/',partialsDir:__dirname+'/views/layouts/partials/'}));
+app.engine('hbs', hbs.engine({extname:'hbs',
+                              defaultLayout:'layout',
+                              layoutsDir:__dirname+'/views/layouts/',
+                              partialsDir:__dirname+'/views/layouts/partials/',
+                              helpers:{
+                                eq: (v1, v2) => v1 === v2,
+                                ne: (v1, v2) => v1 !== v2,
+                                lt: (v1, v2) => v1 < v2,
+                                gt: (v1, v2) => v1 > v2,
+                                lte: (v1, v2) => v1 <= v2,
+                                gte: (v1, v2) => v1 >= v2,
+                                and() {
+                                      return Array.prototype.every.call(arguments, Boolean);
+                                       },
+                                 or() {
+                                      return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
+                                     }
+                              }
+                            })
+          );
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

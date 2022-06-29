@@ -16,7 +16,7 @@ function addItemToCart(prodId){
     })
 }
 
-function changeQuantity(cartId,productId,count){
+function changeQuantity(cartId,productId,userId,count){
         
     $.ajax({
               
@@ -24,6 +24,7 @@ function changeQuantity(cartId,productId,count){
         data:{
             cart: cartId,
             product: productId,
+            user: userId,
             count: count
         },
         method: 'post',
@@ -42,6 +43,8 @@ function changeQuantity(cartId,productId,count){
                 }else{
                     document.getElementById(minusButtonId).removeAttribute("hidden")
                 }
+                console.log(response.totalAmount)
+                document.getElementById('totalAmountCart').innerHTML=response.totalAmount
             }
         }
 
