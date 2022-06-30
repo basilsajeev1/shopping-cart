@@ -83,14 +83,13 @@
             url: '/verify-payment',
             data: { orderDetails, paymentResult },
             method: 'post',
-            success: (response)=>{
+            success: async (response)=>{
                 if(response.status){
-                    alert("Order Placed Successfully")
+                    await alert("Order Placed Successfully")
                     window.location = "/";
                 }
             }
-            
-            
+                       
         })
 
     }

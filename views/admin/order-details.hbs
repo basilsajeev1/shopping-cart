@@ -1,0 +1,25 @@
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">User Id</th>
+      <th scope="col">Payment Method</th>
+      <th scope="col">Total Amount</th>
+      <th scope="col">Status</th>
+      <th scope="col">Ship Order</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each orders}}
+    <tr>      
+      <td>{{this.user}}</td>
+      <td>{{this.paymentMethod}}</td>
+      <td>{{this.totalPrice}}</td>
+      <td>{{this.status}}</td>
+      <td><a class="btn btn-primary" id="'button'+'{{this._id}}'" onclick="shipOrder('{{this._id}}')">Ship Order</a></td>
+    </tr>
+    {{/each}}
+   
+  </tbody>
+</table>
+</div>

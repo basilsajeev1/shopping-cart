@@ -264,8 +264,8 @@ module.exports={
         return new Promise((resolve,reject)=>{
         //console.log("reached userhelpers" ,data)
         hmac.update(data['orderDetails[id]'] + "|" + data['paymentResult[razorpay_payment_id]'])
-        hmac=hmac.digest('hex')
-        if(hmac==(data['paymentResult[razorpay_signature]'])){
+        hmacNew=hmac.digest('hex')
+        if(hmacNew==(data['paymentResult[razorpay_signature]'])){
             resolve()
         }else{
             reject()

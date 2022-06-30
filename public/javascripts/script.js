@@ -71,3 +71,16 @@ function deleteProduct(cartId,productId){
         }
     })
 }
+
+function shipOrder(orderId){
+    $.ajax({
+        url:'/admin/ship-order/'+orderId,        
+        method:'get',
+        success:async (response)=>{
+            if(response.status)
+            await alert("Order Shipped")
+            location.reload()
+
+        }
+    })
+}
